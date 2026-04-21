@@ -1,6 +1,6 @@
 # Frontend
 
-React + TypeScript + Webpack client for Athena Academic Core.
+React + TypeScript + Webpack client for Student Management System.
 
 ## Scripts
 

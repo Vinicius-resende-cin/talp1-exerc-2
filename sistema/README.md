@@ -1,6 +1,6 @@
-# Athena Academic Core
+# Student Management System
 
-Athena Academic Core is a full-stack web system scaffold for managing students and exams.
+Student Management System is a full-stack web system scaffold for managing students and exams.
 
 ## Stack
 

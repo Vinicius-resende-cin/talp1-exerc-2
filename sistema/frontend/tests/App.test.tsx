@@ -6,6 +6,6 @@ describe('App', () => {
   it('renders system title', () => {
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Athena Academic Core' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Student Management System' })).toBeInTheDocument();
   });
 });

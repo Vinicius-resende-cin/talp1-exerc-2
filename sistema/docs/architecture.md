@@ -2,7 +2,7 @@
 
 ## Naming
 
-System name: Athena Academic Core.
+System name: Student Management System.
 
 ## High-Level Components
 

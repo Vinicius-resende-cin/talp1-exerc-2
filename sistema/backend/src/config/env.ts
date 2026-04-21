@@ -5,5 +5,5 @@ dotenv.config();
 export const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
   port: Number(process.env.PORT || 3001),
-  mongoUri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/athena_academic_core'
+  mongoUri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/student_management_system'
 };
