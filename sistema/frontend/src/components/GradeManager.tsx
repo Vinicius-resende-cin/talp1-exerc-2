@@ -72,8 +72,8 @@ export function GradeManager(): JSX.Element {
       <form className="student-form" onSubmit={handleSave}>
         <h3>Assign / Update Grade</h3>
         <div className="form-group">
-          <label>Student:</label>
-          <select name="studentId" required value={form.studentId} onChange={handleChange}>
+          <label htmlFor="studentId">Student:</label>
+          <select id="studentId" name="studentId" required value={form.studentId} onChange={handleChange}>
             <option value="" disabled>-- Select a student --</option>
             {students.map(s => (
               <option key={s.id} value={s.id}>{s.name}</option>
@@ -81,15 +81,15 @@ export function GradeManager(): JSX.Element {
           </select>
         </div>
         <div className="form-group">
-          <label>Subject:</label>
-          <input required type="text" name="subject" value={form.subject} onChange={handleChange} list="subjects-list" placeholder="e.g. Mathematics" />
+          <label htmlFor="subject">Subject:</label>
+          <input id="subject" required type="text" name="subject" value={form.subject} onChange={handleChange} list="subjects-list" placeholder="e.g. Mathematics" />
           <datalist id="subjects-list">
             {uniqueSubjects.map(sub => <option key={sub} value={sub} />)}
           </datalist>
         </div>
         <div className="form-group">
-          <label>Grade:</label>
-          <select name="grade" value={form.grade} onChange={handleChange}>
+          <label htmlFor="grade">Grade:</label>
+          <select id="grade" name="grade" value={form.grade} onChange={handleChange}>
             <option value="MANA">MANA</option>
             <option value="MPA">MPA</option>
             <option value="MA">MA</option>

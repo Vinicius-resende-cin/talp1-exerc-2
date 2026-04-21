@@ -70,12 +70,13 @@ export function StudentList(): JSX.Element {
       <form className="student-form" onSubmit={handleSave}>
         <h3>{form.id ? 'Edit Student' : 'Add New Student'}</h3>
         <div className="form-group">
-          <label>Name:</label>
-          <input required type="text" name="name" value={form.name} onChange={handleChange} />
+          <label htmlFor="name-input">Name:</label>
+          <input id="name-input" required type="text" name="name" value={form.name} onChange={handleChange} />
         </div>
         <div className="form-group">
-          <label>CPF:</label>
+          <label htmlFor="cpf-input">CPF:</label>
           <input
+            id="cpf-input"
             required
             type="text"
             name="cpf"
@@ -86,8 +87,8 @@ export function StudentList(): JSX.Element {
           />
         </div>
         <div className="form-group">
-          <label>Email:</label>
-          <input required type="email" name="email" value={form.email} onChange={handleChange} />
+          <label htmlFor="email-input">Email:</label>
+          <input id="email-input" required type="email" name="email" value={form.email} onChange={handleChange} />
         </div>
         <button type="submit" className="btn-primary">
           {form.id ? 'Update Student' : 'Save Student'}
