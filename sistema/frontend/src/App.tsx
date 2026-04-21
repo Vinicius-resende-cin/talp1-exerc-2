@@ -1,4 +1,5 @@
 import React from 'react';
+import { StudentList } from './components/StudentList';
 
 export function App(): JSX.Element {
   return (
@@ -9,12 +10,7 @@ export function App(): JSX.Element {
       </header>
 
       <section>
-        <h2>Modules</h2>
-        <ul>
-          <li>Student Registry</li>
-          <li>Exam Catalog</li>
-          <li>Results and Auditing</li>
-        </ul>
+        <StudentList />
       </section>
     </main>
   );

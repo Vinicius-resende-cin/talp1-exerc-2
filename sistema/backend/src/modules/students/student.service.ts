@@ -11,4 +11,12 @@ export class StudentService {
   async listStudents(): Promise<Student[]> {
     return this.repository.findAll();
   }
+
+  async updateStudent(id: string, payload: Partial<Student>): Promise<Student | null> {
+    return this.repository.update(id, payload);
+  }
+
+  async deleteStudent(id: string): Promise<boolean> {
+    return this.repository.delete(id);
+  }
 }

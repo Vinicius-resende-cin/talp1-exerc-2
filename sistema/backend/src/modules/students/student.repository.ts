@@ -23,4 +23,20 @@ export class StudentRepository {
       email: doc.email
     }));
   }
+
+  async update(id: string, payload: Partial<Student>): Promise<Student | null> {
+    const updated = await StudentModel.findByIdAndUpdate(id, payload, { new: true }).lean();
+    if (!updated) return null;
+    return {
+      id: String(updated._id),
+      name: updated.name,
+      cpf: updated.cpf,
+      email: updated.email
+    };
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const deleted = await StudentModel.findByIdAndDelete(id).lean();
+    return !!deleted;
+  }
 }
