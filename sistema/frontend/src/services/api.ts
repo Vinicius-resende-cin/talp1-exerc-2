@@ -1,6 +1,6 @@
 import { Student } from '../types/student';
 
-const apiBaseUrl = process.env.API_BASE_URL || 'http://localhost:3001/api/v1';
+const apiBaseUrl = 'http://localhost:3001/api/v1';
 
 export async function getStudents(): Promise<Student[]> {
   const response = await fetch(`${apiBaseUrl}/students`);

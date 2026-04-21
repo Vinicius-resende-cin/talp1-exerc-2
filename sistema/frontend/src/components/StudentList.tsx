@@ -113,18 +113,18 @@ export function StudentList(): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          {students.map((s) => (
+          {Array.isArray(students) && students.map((s) => (
              <tr key={s.id}>
               <td>{s.name}</td>
               <td>{s.cpf}</td>
               <td>{s.email}</td>
               <td className="actions">
-                <button onClick={() => handleEdit(s)}>Edit</button>
-                <button onClick={() => handleDelete(s.id)} className="btn-danger">Delete</button>
+                <button type="button" onClick={() => handleEdit(s)}>Edit</button>
+                <button type="button" onClick={() => handleDelete(s.id)} className="btn-danger">Delete</button>
               </td>
             </tr>
           ))}
-          {students.length === 0 && (
+          {(!Array.isArray(students) || students.length === 0) && (
             <tr>
               <td colSpan={4} style={{ textAlign: 'center' }}>No students found.</td>
             </tr>
