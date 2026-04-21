@@ -76,6 +76,17 @@ button {
   color: white;
 }
 
+.form-group select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -95,4 +106,29 @@ button {
 .actions button {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.badge.mana { background-color: #fca5a5; color: #742a2a; }
+.badge.mpa { background-color: #fef08a; color: #744210; }
+.badge.ma { background-color: #86efac; color: #22543d; }
+
+.btn-icon {
+  background: none;
+  color: #c53030;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.btn-icon:hover {
+  color: #9b2c2c;
 }

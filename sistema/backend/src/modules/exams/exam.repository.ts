@@ -23,4 +23,20 @@ export class ExamRepository {
       studentId: doc.studentId
     }));
   }
+
+  async update(id: string, payload: Partial<Exam>): Promise<Exam | null> {
+    const updated = await ExamModel.findByIdAndUpdate(id, payload, { new: true }).lean();
+    if (!updated) return null;
+    return {
+      id: String(updated._id),
+      subject: updated.subject,
+      grade: updated.grade as any,
+      studentId: updated.studentId
+    };
+  }
+
+  async delete(id: string): Promise<boolean> {
+    const deleted = await ExamModel.findByIdAndDelete(id).lean();
+    return !!deleted;
+  }
 }

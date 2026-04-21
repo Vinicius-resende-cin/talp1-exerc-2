@@ -1,5 +1,7 @@
 import { Student } from '../types/student';
 
+import { Exam } from '../types/exam';
+
 const apiBaseUrl = 'http://localhost:3001/api/v1';
 
 export async function getStudents(): Promise<Student[]> {
@@ -31,7 +33,31 @@ export async function deleteStudent(id: string): Promise<void> {
   });
 }
 
-export async function getExams(): Promise<unknown> {
+export async function getExams(): Promise<Exam[]> {
   const response = await fetch(`${apiBaseUrl}/exams`);
   return response.json();
+}
+
+export async function createExam(exam: Omit<Exam, 'id'>): Promise<Exam> {
+  const response = await fetch(`${apiBaseUrl}/exams`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(exam)
+  });
+  return response.json();
+}
+
+export async function updateExam(id: string, exam: Partial<Exam>): Promise<Exam> {
+  const response = await fetch(`${apiBaseUrl}/exams/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(exam)
+  });
+  return response.json();
+}
+
+export async function deleteExam(id: string): Promise<void> {
+  await fetch(`${apiBaseUrl}/exams/${id}`, {
+    method: 'DELETE'
+  });
 }

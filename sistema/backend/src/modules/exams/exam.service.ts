@@ -11,4 +11,12 @@ export class ExamService {
   async listExams(): Promise<Exam[]> {
     return this.repository.findAll();
   }
+
+  async updateExam(id: string, payload: Partial<Exam>): Promise<Exam | null> {
+    return this.repository.update(id, payload);
+  }
+
+  async deleteExam(id: string): Promise<boolean> {
+    return this.repository.delete(id);
+  }
 }
