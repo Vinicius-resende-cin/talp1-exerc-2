@@ -1,16 +1,15 @@
 export interface Student {
   id?: string;
   name: string;
+  cpf: string;
   email: string;
-  registrationNumber: string;
-  status: 'active' | 'inactive';
 }
+
+export type Grade = 'MANA' | 'MPA' | 'MA';
 
 export interface Exam {
   id?: string;
-  title: string;
   subject: string;
-  date: string;
-  maxScore: number;
+  grade: Grade;
   studentId: string;
 }

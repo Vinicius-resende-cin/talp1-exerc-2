@@ -90,8 +90,8 @@ npm run lint
 
 ## Initial Domain Model
 
-- Student: name, email, registrationNumber, status
-- Exam: title, date, subject, maxScore, studentId
+- Student: name, cpf, email
+- Exam: subject, grade (MANA, MPA, MA), studentId
 
 ## Notes
 

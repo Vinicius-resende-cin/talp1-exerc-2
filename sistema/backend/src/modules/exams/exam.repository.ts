@@ -7,10 +7,8 @@ export class ExamRepository {
 
     return {
       id: created.id,
-      title: created.title,
       subject: created.subject,
-      date: created.date,
-      maxScore: created.maxScore,
+      grade: created.grade as any,
       studentId: created.studentId
     };
   }
@@ -20,10 +18,8 @@ export class ExamRepository {
 
     return docs.map((doc) => ({
       id: String(doc._id),
-      title: doc.title,
       subject: doc.subject,
-      date: doc.date,
-      maxScore: doc.maxScore,
+      grade: doc.grade as any,
       studentId: doc.studentId
     }));
   }

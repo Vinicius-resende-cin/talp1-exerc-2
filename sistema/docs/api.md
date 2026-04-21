@@ -15,9 +15,8 @@ Request example:
 ```json
 {
   "name": "Alice Johnson",
-  "email": "alice@example.com",
-  "registrationNumber": "REG-1001",
-  "status": "active"
+  "cpf": "12345678901",
+  "email": "alice@example.com"
 }
 ```
 
@@ -33,10 +32,8 @@ Request example:
 
 ```json
 {
-  "title": "Midterm 1",
   "subject": "Mathematics",
-  "date": "2026-05-20",
-  "maxScore": 100,
+  "grade": "MPA",
   "studentId": "student-id"
 }
 ```

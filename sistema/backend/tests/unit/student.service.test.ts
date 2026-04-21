@@ -7,9 +7,8 @@ describe('StudentService', () => {
       {
         id: '1',
         name: 'Alice Johnson',
-        email: 'alice@example.com',
-        registrationNumber: 'REG-1001',
-        status: 'active'
+        cpf: '12345678901',
+        email: 'alice@example.com'
       }
     ];
 

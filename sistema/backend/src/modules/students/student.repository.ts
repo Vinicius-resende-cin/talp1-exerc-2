@@ -8,9 +8,8 @@ export class StudentRepository {
     return {
       id: created.id,
       name: created.name,
-      email: created.email,
-      registrationNumber: created.registrationNumber,
-      status: created.status
+      cpf: created.cpf,
+      email: created.email
     };
   }
 
@@ -20,9 +19,8 @@ export class StudentRepository {
     return docs.map((doc) => ({
       id: String(doc._id),
       name: doc.name,
-      email: doc.email,
-      registrationNumber: doc.registrationNumber,
-      status: doc.status
+      cpf: doc.cpf,
+      email: doc.email
     }));
   }
 }
