@@ -29,6 +29,9 @@ export function StudentList(): JSX.Element {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formElement = e.currentTarget as HTMLFormElement;
+    if (!formElement.checkValidity() || form.cpf.length !== 11) return;
+
     try {
       if (form.id) {
         await updateStudent(form.id, { name: form.name, cpf: form.cpf, email: form.email });

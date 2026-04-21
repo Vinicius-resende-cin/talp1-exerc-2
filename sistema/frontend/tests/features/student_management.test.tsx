@@ -116,11 +116,10 @@ defineFeature(feature, (test) => {
     });
 
     // The validation is currently native HTML validation, so we just check it wasn't called
-    then('the system should prevent the form submission', () => {
-      // Actually standard jsdom doesn't enforce minlength for fireEvent.submit, but we can verify our backend wasn't called or handled differently.
-      // But typically unit tests for HTML5 validation fail without proper setups. 
-      // Assuming it shouldn't proceed:
-      // Note: Jest/JSDOM doesn't inherently block submit on `minLength` natively. We'll just pass here recognizing it's checked by DOM in real browser.
+    then('the system should prevent the form submission', async () => {
+      await waitFor(() => {
+        expect(mockedApi.createStudent).not.toHaveBeenCalled();
+      });
     });
 
     and('prompt for a valid 11-digit CPF format', () => {
