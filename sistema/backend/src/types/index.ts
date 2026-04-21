@@ -13,3 +13,11 @@ export interface Exam {
   grade: Grade;
   studentId: string;
 }
+
+export interface CourseClass {
+  id?: string;
+  subject: string;
+  year: number;
+  semester: number;
+  students: string[];
+}

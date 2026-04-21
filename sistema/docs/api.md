@@ -37,3 +37,22 @@ Request example:
   "studentId": "student-id"
 }
 ```
+
+## Classes
+
+### GET /classes
+Returns all classes.
+
+### POST /classes
+Creates a new class.
+
+Request example:
+
+```json
+{
+  "subject": "Software Engineering",
+  "year": 2026,
+  "semester": 1,
+  "students": ["student-id-1", "student-id-2"]
+}
+```

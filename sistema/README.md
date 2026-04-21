@@ -92,6 +92,7 @@ npm run lint
 
 - Student: name, cpf, email
 - Exam: subject, grade (MANA, MPA, MA), studentId
+- CourseClass: subject, year, semester, students (list of Student IDs)
 
 ## Notes
 
