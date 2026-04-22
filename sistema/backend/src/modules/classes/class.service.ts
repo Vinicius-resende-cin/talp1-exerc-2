@@ -11,4 +11,12 @@ export class ClassService {
   async listClasses(): Promise<CourseClass[]> {
     return this.repository.findAll();
   }
+
+  async deleteClass(id: string): Promise<void> {
+    return this.repository.delete(id);
+  }
+
+  async addStudent(classId: string, studentId: string): Promise<void> {
+    return this.repository.addStudent(classId, studentId);
+  }
 }

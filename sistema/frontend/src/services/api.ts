@@ -91,3 +91,11 @@ export async function deleteClass(id: string): Promise<void> {
   });
 }
 
+export async function addStudentToClass(classId: string, studentId: string): Promise<void> {
+  await fetch(`${apiBaseUrl}/classes/${classId}/students`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ studentId })
+  });
+}
+

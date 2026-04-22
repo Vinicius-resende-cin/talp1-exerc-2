@@ -3,4 +3,5 @@ export interface Class {
   subject: string;
   year: number;
   semester: number;
+  students?: string[];
 }

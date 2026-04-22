@@ -6,7 +6,7 @@ export class ClassRepository {
     const created = await CourseClassModel.create(payload);
 
     return {
-      id: created.id,
+      id: String(created._id),
       subject: created.subject,
       year: created.year,
       semester: created.semester,
@@ -22,7 +22,17 @@ export class ClassRepository {
       subject: doc.subject,
       year: doc.year,
       semester: doc.semester,
-      students: doc.students
+      students: doc.students || []
     }));
+  }
+
+  async delete(id: string): Promise<void> {
+    await CourseClassModel.findByIdAndDelete(id);
+  }
+
+  async addStudent(classId: string, studentId: string): Promise<void> {
+    await CourseClassModel.findByIdAndUpdate(classId, {
+      $addToSet: { students: studentId }
+    });
   }
 }

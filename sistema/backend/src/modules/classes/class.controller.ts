@@ -13,3 +13,16 @@ export async function listClasses(_req: Request, res: Response): Promise<void> {
   const classes = await service.listClasses();
   res.status(200).json(classes);
 }
+
+export async function deleteClass(req: Request, res: Response): Promise<void> {
+  const { id } = req.params;
+  await service.deleteClass(id);
+  res.status(204).send();
+}
+
+export async function addStudent(req: Request, res: Response): Promise<void> {
+  const { id } = req.params;
+  const { studentId } = req.body;
+  await service.addStudent(id, studentId);
+  res.status(200).send();
+}

@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Class } from '../types/class';
-import { getClasses, createClass, updateClass, deleteClass } from '../services/api';
+import { Student } from '../types/student';
+import { getClasses, createClass, updateClass, deleteClass, getStudents, addStudentToClass } from '../services/api';
 
 export function ClassManager(): JSX.Element {
   const [classes, setClasses] = useState<Class[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
   const [formSubject, setFormSubject] = useState('');
   const [formYear, setFormYear] = useState('');
   const [formSemester, setFormSemester] = useState('');
   const [selectedClass, setSelectedClass] = useState<Class | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [selectedStudentToAdd, setSelectedStudentToAdd] = useState('');
 
   useEffect(() => {
     loadClasses();
+    loadStudents();
   }, []);
 
   async function loadClasses() {
@@ -20,6 +24,30 @@ export function ClassManager(): JSX.Element {
       setClasses(data);
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  async function loadStudents() {
+    try {
+      const data = await getStudents();
+      setStudents(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async function handleAddStudent() {
+    if (selectedClass && selectedStudentToAdd) {
+      await addStudentToClass(selectedClass.id, selectedStudentToAdd);
+      setSelectedStudentToAdd('');
+      await loadClasses();
+      
+      // Update selectedClass manually to reflect new state
+      const updatedClasses = await getClasses();
+      const updatedSelected = updatedClasses.find(c => c.id === selectedClass.id);
+      if (updatedSelected) {
+        setSelectedClass(updatedSelected);
+      }
     }
   }
 
@@ -45,23 +73,43 @@ export function ClassManager(): JSX.Element {
   }
 
   if (selectedClass) {
+    const enrolledStudents = students.filter(s => selectedClass.students?.includes(s.id!));
+    const availableStudents = students.filter(s => !selectedClass.students?.includes(s.id!));
+
     return (
       <div>
         <h2>information about the class "{selectedClass.subject}"</h2>
         <button onClick={() => setSelectedClass(null)}>Back to Classes</button>
-        {selectedClass.subject === 'Physics' ? (
+        
+        <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+          <h3>Add Student</h3>
+          <select 
+            value={selectedStudentToAdd} 
+            onChange={(e) => setSelectedStudentToAdd(e.target.value)}
+          >
+            <option value="">Select a student...</option>
+            {availableStudents.map(s => (
+              <option key={s.id} value={s.id}>{s.name} ({s.cpf})</option>
+            ))}
+          </select>
+          <button onClick={handleAddStudent} disabled={!selectedStudentToAdd}>Add</button>
+        </div>
+
+        {enrolledStudents.length > 0 ? (
           <table>
             <thead>
               <tr>
                 <th>Student</th>
-                <th>Grade</th>
+                <th>CPF</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Dave</td>
-                <td>MA</td>
-              </tr>
+              {enrolledStudents.map(s => (
+                <tr key={s.id}>
+                  <td>{s.name}</td>
+                  <td>{s.cpf}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         ) : (
