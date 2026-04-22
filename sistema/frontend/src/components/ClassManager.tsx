@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Class } from '../types/class';
 import { Student } from '../types/student';
-import { getClasses, createClass, updateClass, deleteClass, getStudents, addStudentToClass } from '../services/api';
+import { Exam } from '../types/exam';
+import { getClasses, createClass, updateClass, deleteClass, getStudents, addStudentToClass, getExams } from '../services/api';
 
 export function ClassManager(): JSX.Element {
   const [classes, setClasses] = useState<Class[]>([]);
   const [students, setStudents] = useState<Student[]>([]);
+  const [exams, setExams] = useState<Exam[]>([]);
   const [formSubject, setFormSubject] = useState('');
   const [formYear, setFormYear] = useState('');
   const [formSemester, setFormSemester] = useState('');
@@ -16,7 +18,17 @@ export function ClassManager(): JSX.Element {
   useEffect(() => {
     loadClasses();
     loadStudents();
+    loadExams();
   }, []);
+
+  async function loadExams() {
+    try {
+      const data = await getExams();
+      setExams(data);
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   async function loadClasses() {
     try {
@@ -101,15 +113,20 @@ export function ClassManager(): JSX.Element {
               <tr>
                 <th>Student</th>
                 <th>CPF</th>
+                <th>Grade</th>
               </tr>
             </thead>
             <tbody>
-              {enrolledStudents.map(s => (
-                <tr key={s.id}>
-                  <td>{s.name}</td>
-                  <td>{s.cpf}</td>
-                </tr>
-              ))}
+              {enrolledStudents.map(s => {
+                const exam = exams.find(e => e.studentId === s.id && e.subject.toLowerCase() === selectedClass.subject.toLowerCase());
+                return (
+                  <tr key={s.id}>
+                    <td>{s.name}</td>
+                    <td>{s.cpf}</td>
+                    <td>{exam ? exam.grade : '-'}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         ) : (
