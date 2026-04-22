@@ -1,6 +1,6 @@
 import { Student } from '../types/student';
-
 import { Exam } from '../types/exam';
+import { Class } from '../types/class';
 
 const apiBaseUrl = 'http://localhost:3001/api/v1';
 
@@ -61,3 +61,33 @@ export async function deleteExam(id: string): Promise<void> {
     method: 'DELETE'
   });
 }
+
+export async function getClasses(): Promise<Class[]> {
+  const response = await fetch(`${apiBaseUrl}/classes`);
+  return response.json();
+}
+
+export async function createClass(classData: Omit<Class, 'id'>): Promise<Class> {
+  const response = await fetch(`${apiBaseUrl}/classes`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(classData)
+  });
+  return response.json();
+}
+
+export async function updateClass(id: string, classData: Partial<Class>): Promise<Class> {
+  const response = await fetch(`${apiBaseUrl}/classes/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(classData)
+  });
+  return response.json();
+}
+
+export async function deleteClass(id: string): Promise<void> {
+  await fetch(`${apiBaseUrl}/classes/${id}`, {
+    method: 'DELETE'
+  });
+}
+
